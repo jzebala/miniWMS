@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\Location;
+use App\Exports\ProductsExport;
 
 use App\GodHand;
 
 use PDF;
 use Session;
+use Excel;
 
 class ProductController extends Controller
 {
@@ -43,6 +45,11 @@ class ProductController extends Controller
 
         // Return view with results
         return view('product.index', compact('products'));
+    }
+
+    public function excel()
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');   
     }
 
     /**

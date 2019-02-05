@@ -16,6 +16,7 @@
                 @else
                     <h6 class="card-subtitle mb-2 text-muted">Ilość produktów: {{ App\Product::count() }}</h6>
                 @endif
+                <a href={{ route('product.excel') }} class="btn btn-outline-primary btn-sm" >Excel</a>
             </div> <!-- ./ col -->
 
             <div class="col col-md-4 text-right">
@@ -84,7 +85,6 @@
         {{-- Show if isset pagination --}}
         @if($products instanceof \Illuminate\Pagination\AbstractPaginator)
         <div class="card-footer">
-        
             <div class="float-md-right">
             <!-- Show pagination -->
             {{ $products->links() }}

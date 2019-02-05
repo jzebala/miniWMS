@@ -15,6 +15,11 @@ Route::get('/product', [
     'uses' => 'ProductController@index'
 ]);
 
+Route::get('/product/excel', [
+    'as' => 'product.excel' , 
+    'uses' => 'ProductController@excel'
+]);
+
 // Show
 Route::get('/product/{id}', [
     'as' => 'product.show' , 
