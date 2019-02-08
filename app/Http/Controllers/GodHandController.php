@@ -13,7 +13,11 @@ class GodHandController extends Controller
 {
     public function index()
     {
-        $godHand = GodHand::orderBY('created_at', 'DESC')->paginate(10);
+        if (GodHand::count() <= 10) {
+            $godHand = GodHand::orderBY('created_at', 'DESC')->get();
+        } else {
+            $godHand = GodHand::orderBY('created_at', 'DESC')->paginate(10);
+        }
 
         return view('godHand.index', compact('godHand'));
     }

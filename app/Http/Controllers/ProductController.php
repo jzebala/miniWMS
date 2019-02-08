@@ -49,7 +49,7 @@ class ProductController extends Controller
 
     public function excel()
     {
-        return Excel::download(new ProductsExport, 'products.xlsx');   
+        return Excel::download(new ProductsExport, 'MiniWMS - products.xlsx');   
     }
 
     /**

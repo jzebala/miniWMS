@@ -91,6 +91,7 @@ class StockLevelController extends Controller
                 'location' => $location->name,
                 'quantity' => $value->quantity,
                 'created_at' => Carbon::parse($value->created_at)->format('Y-m-d'),
+                'time_created_at' => Carbon::parse($value->created_at)->format('H:i:s'),
                 'days' => Carbon::parse($value->created_at)->diffInDays()
             ]);
         }

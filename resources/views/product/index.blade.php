@@ -14,9 +14,17 @@
                 @if(Request::get('search'))
                     <h6 class="card-subtitle mb-2 text-muted">Znaleziono produktów: {{ $products->count() }}</h6>
                 @else
-                    <h6 class="card-subtitle mb-2 text-muted">Ilość produktów: {{ App\Product::count() }}</h6>
+                <h6 class="card-subtitle mb-2">
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Ilość produktów: {{ App\Product::count() }}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href={{ route('product.excel') }} >Pobierz w Excel</a>
+                        </div>
+                    </div>
+                </h6>
                 @endif
-                <a href={{ route('product.excel') }} class="btn btn-outline-primary btn-sm" >Excel</a>
             </div> <!-- ./ col -->
 
             <div class="col col-md-4 text-right">

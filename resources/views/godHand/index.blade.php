@@ -7,23 +7,23 @@
 <div class="container" style="margin-top: 20px;">
     <div class="card">
         <div class="card-body">
-
             <h5 class="card-title">"Ręka boga"</h5>
             <h6 class="card-subtitle mb-4 text-muted">
                 Odwracanie zmian, które zostały wprowadzone na magazynie
             </h6>
-        @include('error_raports')
 
-        <style>
-        .table > tbody > tr > td
-        {
-            vertical-align: middle;
-        }
+            @include('error_raports')
 
-        table{
-            text-align: center;
-        }
-        </style>
+            <style>
+            .table > tbody > tr > td
+            {
+                vertical-align: middle;
+            }
+
+            table{
+                text-align: center;
+            }
+            </style>
 
         <table class="table table-sm">
 
@@ -40,7 +40,7 @@
             </thead> <!-- ./ thead -->
 
             <tbody>
-                @forelse($godHand as $record)
+            @forelse($godHand as $record)
                 <tr>
                     @if ($record->action == 'attach')
                     <td class="table-success">
@@ -72,7 +72,7 @@
                     {!! Form::close() !!}
                     </td>
                 </tr>
-                @empty
+            @empty
                 <tr>
                     <td colspan="7">
                         <div class="alert alert-warning" role="alert">
@@ -80,23 +80,23 @@
                         </div>
                     </td>
                 </tr>
-                
-                @endforelse
-
+            @endforelse
             </tbody> <!-- ./ tbody -->
         </table> <!-- ./ table -->
+
+        </div> <!-- ./ card-body -->
+
+        {{-- Show if isset pagination --}}
+        @if($godHand instanceof \Illuminate\Pagination\AbstractPaginator)
         <div class="card-footer">
-        
             <div class="float-md-right">
-            <!-- Show pagination -->
             {{ $godHand->links() }}
             </div>
             <div style="clear: both;"></div>
 
         </div> <!-- ./ card-footer -->
-        </div> <!-- ./ card-body -->
+        @endif
+
     </div> <!-- ./ card -->
-
 </div> <!-- ./ container -->
-
 @endsection

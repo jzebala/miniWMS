@@ -120,3 +120,7 @@ Route::post('/godhand/{id}', [
     'as' => 'godhand.godHand' , 
     'uses' => 'GodHandController@godHand'
 ]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -28,6 +28,10 @@ class CreateGodHandsTable extends Migration
             
             $table->timestamps();
             $table->softDeletes();
+
+            // Foreign Key Constraints
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('location_id')->references('id')->on('locations');
         });
     }
 
