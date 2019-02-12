@@ -23,7 +23,11 @@ $(function () {
                 </h6>
 
                 @if(Request::get('days'))
-                    <p class="mb-2">Wybrano: {{ Request::get('days') }} dni.</p>
+                    @if(Request::get('days') == 'month')
+                        <p class="mb-2">Wybrano: ostatni miesiąc.</p>
+                    @else
+                        <p class="mb-2">Wybrano: {{ Request::get('days') }} dni.</p>
+                    @endif
                 @else
                     <p class="mb-2">Wybrano: 10 dni.</p>
                 @endif
@@ -43,7 +47,7 @@ $(function () {
                             <a class="dropdown-item" href={{ route('stocklevel.expired', ['days' => 10]) }}>10 dni</a>
                             <a class="dropdown-item" href={{ route('stocklevel.expired', ['days' => 20]) }}>20 dni</a>
                             <div role="separator" class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Ostatni miesiąc</a>
+                            <a class="dropdown-item" href={{ route('stocklevel.expired', ['days' => 'month']) }}>Ostatni miesiąc</a>
                         </div>
                     </div>
                 </div>

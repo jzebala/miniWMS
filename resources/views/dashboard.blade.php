@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'miniWMS - dashboard')
+@section('title', 'miniWMS')
 
 @section('content')
 
@@ -47,6 +47,27 @@
     </div> <!-- ./ col-md-8 -->
 
     <div class="col col-md-4">
+
+        <div class="card border-light">
+            <div class="card-header">
+                Witaj, Janusz
+            </div> <!-- ./ card-header -->
+
+            <div class="card-body">
+                <div class="text-center">
+                    <img src={{ asset('user.png') }} class="rounded-circle" alt="User image">
+                </div>
+                <hr>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="#" class="btn btn-outline-primary"><i class="fas fa-user"></i> Profil</a>
+                    <a href="#" class="btn btn-outline-success"><i class="fas fa-envelope"></i> Wiadomości (5)</a>
+                    <a href="#" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i>Wyloguj</a>
+                </div>
+            </div> <!-- ./ card-body -->
+        </div> <!-- ./ card -->
+
+        <hr>
+
         <div class="card">
             <div class="card-header">
                 Stany magazynowe
@@ -80,6 +101,7 @@
 
     </div> <!-- ./ col-md-4 -->
 </div> <!-- ./ row -->
+
 </div> <!-- ./ container -->
 
 @endsection

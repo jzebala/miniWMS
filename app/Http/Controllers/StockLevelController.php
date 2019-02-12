@@ -60,17 +60,22 @@ class StockLevelController extends Controller
         // Get days from request
         $days_r = \Request::get('days'); // $_GET['days']
 
-        $days = isset($days_r) ? (int) $days_r : null;
+        if ($days_r == 'month') {
+            $data = DB::table('location_product')->where('created_at', '<=', DB::raw("DATE_SUB(NOW(), INTERVAL 1  MONTH)"))->orderBy('created_at', 'ASC')->get();
+        } else {
 
-        // $days = null
-        if(!$days)
-        {
-            // Set default number of days
-            $days = 10;
+            $days = isset($days_r) ? (int) $days_r : null;
+
+            // $days = null
+            if(!$days)
+            {
+                // Set default number of days
+                $days = 10;
+            }
+
+            // SQL Query
+            $data = DB::table('location_product')->where('created_at', '<=', DB::raw("DATE_SUB(NOW(), INTERVAL $days  DAY)"))->orderBy('created_at', 'ASC')->get();
         }
-
-        // SQL Query
-        $data = DB::table('location_product')->where('created_at', '<=', DB::raw("DATE_SUB(NOW(), INTERVAL $days  DAY)"))->orderBy('created_at', 'ASC')->get();
 
         // Array with data, sent to the view
         $results = array();
@@ -108,17 +113,24 @@ class StockLevelController extends Controller
      */
     public function expiredPdf($days)
     {
-        $days = isset($days) ? (int) $days : null;
+        if ($days == 'month') {
+            $data = DB::table('location_product')->where('created_at', '<=', DB::raw("DATE_SUB(NOW(), INTERVAL 1  MONTH)"))->orderBy('created_at', 'ASC')->get();
+        } else {
 
-        // $days = null
-        if(!$days)
-        {
-            // Set default number of days
-            $days = 10;
+            $days = isset($days) ? (int) $days : null;
+
+            // $days = null
+            if(!$days)
+            {
+                // Set default number of days
+                $days = 10;
+            }
+
+            // SQL Query
+            $data = DB::table('location_product')->where('created_at', '<=', DB::raw("DATE_SUB(NOW(), INTERVAL $days  DAY)"))->orderBy('created_at', 'ASC')->get();
         }
 
-        // SQL Query
-        $data = DB::table('location_product')->where('created_at', '<=', DB::raw("DATE_SUB(NOW(), INTERVAL $days  DAY)"))->orderBy('created_at', 'ASC')->get();
+        $days = isset($days) ? (int) $days : null;
 
         // Array with data, sent to the view
         $results = array();
