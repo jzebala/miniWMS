@@ -16,5 +16,11 @@ class DatabaseSeeder extends Seeder
         
         // Run products seeder
         $this->call(ProductsTableSeeder::class);
+
+        // Run roles seeder
+        $this->call(RolesTableSeeder::class);
+
+        // Run roles seeder
+        $this->call(UsersTableSeeder::class);
     }
 }

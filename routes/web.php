@@ -1,9 +1,27 @@
 <?php
 
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+/* ---- ADMIN ROUTE ---- */
+Route::group(['middleware' => 'roles', 'roles' => 'Admin'], function()
+{
+
 // Dashboard
 Route::get('/', 'DashboardController')->name('dashboard');
 
 Route::get('/inventory-list', 'InventoryListController')->name('inventoryList');
+
+/**
+ * Routes User
+ */
+
+// Show user by ID
+Route::get('/user/{id}', [
+    'as' => 'user.show' , 
+    'uses' => 'UserController@show'
+]);
 
 /**
  *  Routes Product
@@ -121,6 +139,4 @@ Route::post('/godhand/{id}', [
     'uses' => 'GodHandController@godHand'
 ]);
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+});

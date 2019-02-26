@@ -37,6 +37,28 @@
                 </div>
             </li>
         </ul>
+
+		<ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i> {{ Auth::user()->name }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown">
+                    <a class="dropdown-item" href="{{ route('user.show', Auth::user()->id) }}">Profil</a>
+                    <a class="dropdown-item" href="#">Wiadomości (5)</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{{ route('logout') }}" class="dropdown-item" 
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                    Wyloguj się
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+		</ul>
     </div>
 
 </div> <!-- ./ container -->

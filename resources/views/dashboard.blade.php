@@ -50,7 +50,7 @@
 
         <div class="card border-light">
             <div class="card-header">
-                Witaj, Janusz
+                Witaj, {{ Auth::user()->name }}
             </div> <!-- ./ card-header -->
 
             <div class="card-body">
@@ -59,9 +59,18 @@
                 </div>
                 <hr>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="#" class="btn btn-outline-primary"><i class="fas fa-user"></i> Profil</a>
+                    <a href="{{ route('user.show', Auth::user()->id) }}" class="btn btn-outline-primary"><i class="fas fa-user"></i> Profil</a>
                     <a href="#" class="btn btn-outline-success"><i class="fas fa-envelope"></i> Wiadomości (5)</a>
-                    <a href="#" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i>Wyloguj</a>
+                    <!-- <a href="#" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i>Wyloguj</a> -->
+                    <a href="{{ route('logout') }}" class="btn btn-outline-secondary" 
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt"></i>Wyloguj
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </div> <!-- ./ card-body -->
         </div> <!-- ./ card -->
