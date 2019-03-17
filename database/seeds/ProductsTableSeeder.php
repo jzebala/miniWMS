@@ -14,7 +14,7 @@ class ProductsTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         // Creata random products
-        for($i = 1; $i <= 50; $i++)
+        for($i = 1; $i <= 80; $i++)
         {
             // Create record with product
             $product = new App\Product();

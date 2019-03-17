@@ -9,12 +9,19 @@ use App\Location;
 
 class InventoryListController extends Controller
 {
+    public function index()
+    {
+        $locations = Location::get();
+        
+        return view('InventoryList.index', compact('locations'));
+    }
+
     /**
      * Inventory List to PDF
      *
      * @return \Illuminate\Http\Response
      */
-    public function __invoke()
+    public function InventoryListPdf()
     {
         $locations = Location::get();
 

@@ -33,7 +33,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdown">
                     <a class="dropdown-item" href={{ route('godhand.index') }}>Ręka Boga</a>
                     <div class="dropdown-divider"></div>
-                    <a target="_blank" class="dropdown-item" href={{ route('inventoryList') }}>Lista inwentaryzacyjna</a>
+                    <a target="_blank" class="dropdown-item" href={{ route('InventoryListPdf') }}>Lista inwentaryzacyjna</a>
                 </div>
             </li>
         </ul>

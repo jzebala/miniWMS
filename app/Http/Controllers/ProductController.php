@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\Location;
+
 use App\Exports\ProductsExport;
+use App\Imports\ProductsImport;
 
 use App\GodHand;
+
+use Carbon\carbon;
 
 use PDF;
 use Session;
@@ -47,9 +51,35 @@ class ProductController extends Controller
         return view('product.index', compact('products'));
     }
 
-    public function excel()
+    /**
+     * Export products to Excel file.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function exportExcel()
     {
-        return Excel::download(new ProductsExport, 'MiniWMS - products.xlsx');   
+        $file_name = 'Products - MiniWMS ' . Carbon::now() . '.xlsx';
+
+        return Excel::download(new ProductsExport, $file_name);   
+    }
+
+    public function import(Request $request)
+    {
+        if ($request->hasFile('file')) {
+
+            // validate incoming request
+            $this->validate($request, [
+                'file' => 'required|file|mimes:xls,xlsx|max:10240', //max 10Mb
+            ]);
+
+            if ($request->file('file')->isValid()) {
+                Excel::import(new ProductsImport, $request->file);
+
+                return redirect()->route('product.index')->with('successMsg', 'Zaimportowano plik Excel');
+            }
+        } else {
+            return back();
+        }
     }
 
     /**

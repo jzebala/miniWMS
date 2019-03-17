@@ -8,6 +8,8 @@
     <div class="card">
         <div class="card-body">
 
+        @include('product.import_form')
+
         <div class="row">
             <div class="col col-md-8">
                 <h5 class="card-title">Produkty</h5>
@@ -17,10 +19,16 @@
                 <h6 class="card-subtitle mb-2">
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Ilość produktów: {{ App\Product::count() }}
+                            Excel
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href={{ route('product.excel') }} >Pobierz w Excel</a>
+                            <a class="dropdown-item" href={{ route('product.exportExcel') }} >Export
+                                <div class="float-right">
+                                    <span class="badge badge-pill badge-success">{{ App\Product::count() }}</span>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item" data-toggle="modal" data-target="#importFormModal">Import</button>
                         </div>
                     </div>
                 </h6>
@@ -32,12 +40,14 @@
                 <div class="input-group">
                     <input type="text" name="search" class="form-control" placeholder="Czego szukasz ?">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-primary" type="submit">Wyświetl</button>
+                        <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
             {!! Form::close() !!}
             </div> <!-- ./ col -->
         </div> <!-- ./ row -->
+
+        @include('error_raports')
 
         <table class="table">
 

@@ -33,7 +33,10 @@
                     </tr>
                     <tr>
                         <th scope="row" style="vertical-align: middle !important;">Kod EAN</th>
-                        <td>{{ $product->ean_code }} {!! DNS1D::getBarcodeHTML($product->ean_code, "EAN13") !!}</td>
+                        <td>
+                            {{ $product->ean_code }} 
+                            {!! DNS1D::getBarcodeHTML($product->ean_code, "EAN13") !!}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Stan</th>

@@ -11,7 +11,22 @@ Route::group(['middleware' => 'roles', 'roles' => 'Admin'], function()
 // Dashboard
 Route::get('/', 'DashboardController')->name('dashboard');
 
-Route::get('/inventory-list', 'InventoryListController')->name('inventoryList');
+// Inventory list PDF
+Route::get('/inventory-list', [
+    'as' => 'InventoryListPdf' , 
+    'uses' => 'InventoryListController@InventoryListPdf'
+]);
+
+Route::get('/inventory-list/pdf', [
+    'as' => 'InventoryListPdf' , 
+    'uses' => 'InventoryListController@InventoryListPdf'
+]);
+
+Route::get('/inventory-list', [
+    'as' => 'InventoryList.index' , 
+    'uses' => 'InventoryListController@index'
+]);
+
 
 /**
  * Routes User
@@ -33,9 +48,15 @@ Route::get('/product', [
     'uses' => 'ProductController@index'
 ]);
 
-Route::get('/product/excel', [
-    'as' => 'product.excel' , 
-    'uses' => 'ProductController@excel'
+// Export products to Excel
+Route::get('/product/export/excel', [
+    'as' => 'product.exportExcel' , 
+    'uses' => 'ProductController@exportExcel'
+]);
+
+Route::post('/product/import', [
+    'as' => 'product.import' , 
+    'uses' => 'ProductController@import'
 ]);
 
 // Show

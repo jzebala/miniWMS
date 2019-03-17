@@ -48,6 +48,21 @@
 
     <div class="col col-md-4">
 
+        <div class="card">
+            <div class="card-body">
+            {!! Form::open(['method'=>'GET', 'route' => 'product.index'])  !!}
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Wyszukaj produkt">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            {!! Form::close() !!}
+            </div> <!-- ./ card-body -->
+        </div> <!-- ./ card -->
+
+        <hr>
+
         <div class="card border-light">
             <div class="card-header">
                 Witaj, {{ Auth::user()->name }}
