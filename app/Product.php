@@ -59,6 +59,15 @@ class Product extends Model
         return $this->locations()->where('location_id', $id)->first()->pivot->quantity;
     }
 
+    /* 
+     * Get date attaching product to location
+     * $id - location id
+     */
+    public function getDate($id)
+    {
+        return $this->locations()->where('location_id', $id)->first()->pivot->created_at;
+    }
+
     /*
      * Get count of locations attach to product 
      */

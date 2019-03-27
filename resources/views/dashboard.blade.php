@@ -29,7 +29,7 @@
                             <td>{{ $location->name }}</td>
                             <td class="text-center">
                             @if($location->productsCount() > 0)
-                                Produkty <span class="badge badge-success">{{ $location->productsCount() }}</span>
+                                <span class="badge badge-success">{{ $location->productsCount() }}</span>
                             @else
                                 <span class="badge badge-warning">Pusto</span>
                             @endif
@@ -115,7 +115,7 @@
             <div class="card-body">
                 <div class="list-group list-group-flush">
                     <a href={{ route('godhand.index') }} class="list-group-item list-group-item-action">Ostatnia aktywność</a>
-                    <a href={{ route('inventoryList') }} target="_blank" class="list-group-item list-group-item-action">
+                    <a href={{ route('InventoryList.index') }} target="_blank" class="list-group-item list-group-item-action">
                         Lista inwentaryzacyjna
                         <span class="badge badge-primary">PDF</span>
                     </a>

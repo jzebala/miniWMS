@@ -5,16 +5,16 @@
 @section('content')
 
 <div class="container" style="margin-top: 20px;">
+<div class="row">
+<div class="col-md-6 offset-md-3">
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Lista inwentaryzacyjna</h5>
             <h6 class="card-subtitle mb-4 text-muted">
-                Odwracanie zmian, które zostały wprowadzone na magazynie
+                Wybierz lokalizację, na których chcesz przeprowadzić inwentaryzacje.
             </h6>
 
-            <form action="{{ route('InventoryList.index') }}" method="GET">
-
-                <!-- @csrf -->
+            {!! Form::open(['action' => 'InventoryListController@abc', 'method' => 'POST']) !!}
 
             @foreach ($locations as $location)
             <div class="form-check">
@@ -29,8 +29,11 @@
             <div class="float-right">
                 <input class="btn btn-outline-primary btn-lg" type="submit" value="Wykonaj" >
             </div>
-            </form>
+            
+            {!! Form::close() !!}
         </div> <!-- ./ card-body -->
     </div> <!-- ./ card -->
+</div>
+</div>
 </div> <!-- ./ container -->
 @endsection

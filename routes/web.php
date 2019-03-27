@@ -12,11 +12,6 @@ Route::group(['middleware' => 'roles', 'roles' => 'Admin'], function()
 Route::get('/', 'DashboardController')->name('dashboard');
 
 // Inventory list PDF
-Route::get('/inventory-list', [
-    'as' => 'InventoryListPdf' , 
-    'uses' => 'InventoryListController@InventoryListPdf'
-]);
-
 Route::get('/inventory-list/pdf', [
     'as' => 'InventoryListPdf' , 
     'uses' => 'InventoryListController@InventoryListPdf'
@@ -27,6 +22,10 @@ Route::get('/inventory-list', [
     'uses' => 'InventoryListController@index'
 ]);
 
+Route::post('/inventory-list', [
+    'as' => 'InventoryList.abc' , 
+    'uses' => 'InventoryListController@abc'
+]);
 
 /**
  * Routes User
@@ -115,6 +114,12 @@ Route::get('/locations', [
 Route::get('/location/{id}', [
     'as' => 'location.show' , 
     'uses' => 'LocationController@show'
+]);
+
+// Detach product from location
+Route::post('/location', [
+    'as' => 'location.detachProduct' , 
+    'uses' => 'LocationController@detachProduct'
 ]);
 
 

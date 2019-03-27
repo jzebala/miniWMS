@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\Location;
+use App\LocationProduct;
 
 use Carbon\Carbon;
 use PDF;
@@ -16,8 +17,11 @@ class StockLevelController extends Controller
 {
     public function discrepancy()
     {
+
+        $x = LocationProduct::pluck('product_id')->unique();
+
         // Get all products
-        $products_all = Product::all();
+        $products_all = Product::whereIn('id', $x)->get();
 
         $products = $products_all->filter(function ($product)
         {
@@ -35,8 +39,10 @@ class StockLevelController extends Controller
      */
     public function discrepancyPdf()
     {
+        $x = LocationProduct::pluck('product_id')->unique();
+
         // Get all products
-        $products_all = Product::all();
+        $products_all = Product::whereIn('id', $x)->get();
 
         $products = $products_all->filter(function ($product)
         {
