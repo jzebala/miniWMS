@@ -24,23 +24,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                @forelse($location->products as $product)
+                @forelse($products as $product)
                     <tr>
                         <th scope="row">{{$loop->index + 1 }}</th>
-                        <td>{{ $product->name }}</td>
-                        <td>{{ $product->getQuantityLocation($location->id) }}</td>
-                        <td>{{ $product->getDate($location->id) }}</td>
+                        <td>{{ $product['name'] }}</td>
+                        <td>{{ $product['quantity'] }}</td>
+                        <td>{{ $product['created_at'] }}</td>
                         <td>
                         {{-- Detach location --}}
                         {!! Form::open(['method' => 'POST', 'action' => ['LocationController@detachProduct']]) !!}
-                        {!! Form::hidden('product', $product->id) !!}
+                        {!! Form::hidden('product', $product['id']) !!}
                         {!! Form::hidden('location', $location->id) !!}
-                        {!! Form::hidden('quantity', $product->getQuantityLocation($location->id)) !!}
+                        {!! Form::hidden('quantity', $product['quantity']) !!}
                         <button type="submit" class="btn btn-outline-danger">Usuń</button>
                         {!! Form::close() !!}
                         </td>
                         <td>
-                            <a href="{{ route('product.show', $product->id)}}" class="btn btn-outline-success">Wyświetl</a>
+                            <a href="{{ route('product.show', $product['id'])}}" class="btn btn-outline-success">Wyświetl</a>
                         </td>
                     </tr>
                 @empty

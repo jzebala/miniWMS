@@ -12,6 +12,7 @@
                 <img src={{ asset('user.png') }} class="rounded-circle" alt="User image">
             </div>
 			<hr>
+            @include('error_raports')
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -40,9 +41,17 @@
                     <tr>
                         <th scope="row"><!-- Pusto --></th>
                         <td>
-							<button class="btn btn-outline-primary">Zmień hasło</button>
+							<a href="{{ route('user.changePasswordForm', $user->name) }}" class="btn btn-outline-primary">Zmień hasło</a>
 							<button class="btn btn-outline-success">Edytuj</button>
-							<button class="btn btn-outline-secondary">Wyloguj</button>
+                            <a href="{{ route('logout') }}" class="btn btn-outline-secondary" 
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                            Wyloguj
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </td>
                     </tr>
                 </tbody> <!-- ./tbody -->

@@ -15,7 +15,13 @@
             </h6>
 
             {!! Form::open(['action' => 'InventoryListController@abc', 'method' => 'POST']) !!}
-
+            <div class="form-check text-right">
+                <input class="form-check-input" type="checkbox" name="all" id="checkbox_all">
+                <label class="form-check-label" for="checkbox_all">
+                    <strong>Wszystkie lokalizacje</strong>
+                </label>
+            </div>
+            <hr>
             @foreach ($locations as $location)
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="{{$location->id}}" id="checkbox_{{$location->id}}">

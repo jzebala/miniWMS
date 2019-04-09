@@ -52,7 +52,7 @@
             <div class="card-body">
             {!! Form::open(['method'=>'GET', 'route' => 'product.index'])  !!}
                 <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Wyszukaj produkt">
+                    <input type="text" name="search" class="form-control" placeholder="Wyszukaj produkt" required >
                     <div class="input-group-append">
                         <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
                     </div>
@@ -74,7 +74,7 @@
                 </div>
                 <hr>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{{ route('user.show', Auth::user()->id) }}" class="btn btn-outline-primary"><i class="fas fa-user"></i> Profil</a>
+                    <a href="{{ route('user.show', Auth::user()->name) }}" class="btn btn-outline-primary"><i class="fas fa-user"></i> Profil</a>
                     <a href="#" class="btn btn-outline-success"><i class="fas fa-envelope"></i> Wiadomości (5)</a>
                     <!-- <a href="#" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i>Wyloguj</a> -->
                     <a href="{{ route('logout') }}" class="btn btn-outline-secondary" 
@@ -115,9 +115,8 @@
             <div class="card-body">
                 <div class="list-group list-group-flush">
                     <a href={{ route('godhand.index') }} class="list-group-item list-group-item-action">Ostatnia aktywność</a>
-                    <a href={{ route('InventoryList.index') }} target="_blank" class="list-group-item list-group-item-action">
+                    <a href={{ route('InventoryList.index') }} class="list-group-item list-group-item-action">
                         Lista inwentaryzacyjna
-                        <span class="badge badge-primary">PDF</span>
                     </a>
                 </div> <!-- ./ list-group -->
             </div> <!-- ./ card-body -->

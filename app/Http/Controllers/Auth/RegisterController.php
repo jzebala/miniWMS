@@ -63,10 +63,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // Attach 1 - 1 it's admin role
+        $user->roles()->attach(1);
+
+        return $user;
     }
 }

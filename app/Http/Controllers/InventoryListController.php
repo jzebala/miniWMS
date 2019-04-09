@@ -56,11 +56,19 @@ class InventoryListController extends Controller
     {
         $locations_r = array();
 
-        foreach($request->except('_token') as $key => $value) {
-            array_push($locations_r, $key);
-        }
+        // r_c - Request count
+        $r_c = count($request->all());
 
-        $locations = Location::whereIn('id', $locations_r)->get();
+        // r_c = 2 - two elements _token and all (all checkbox)
+        if ($request->has('all') && $r_c == 2 ) {
+            $locations = Location::all(); // get all locations
+        } else {
+            foreach($request->except('_token') as $key => $value) {
+                array_push($locations_r, $key);
+            }
+    
+            $locations = Location::whereIn('id', $locations_r)->get();
+        }
 
         return $this->toPDF($locations);
     }

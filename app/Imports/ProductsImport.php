@@ -16,9 +16,8 @@ class ProductsImport implements ToCollection
     */
     public function collection(Collection $rows)
     {
-        foreach ($rows as $row) 
+        foreach ($rows->slice(1) as $row) 
         {
-            $row->slice(1);
             $product = Product::create([
                 'name' => $row[1],
                 'ean_code' => $row[2],

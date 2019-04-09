@@ -9,6 +9,7 @@ use App\Product;
 use App\GodHand;
 
 use Session;
+use Carbon\carbon;
 
 class LocationController extends Controller
 {
@@ -23,7 +24,23 @@ class LocationController extends Controller
     {
         $location = Location::findOrFail($id);
 
-        return view('location.show', compact('location'));
+        $collection = collect([]); 
+
+        foreach($location->products as $product) {
+
+            $collection->push(
+            [
+                'id' => $product->id,
+                'name' => $product->name,
+                'quantity' => $product->getQuantityLocation($location->id),
+                'created_at' => Carbon::parse($product->getDate($location->id))->format('Y-m-d')
+            ]);
+        }
+
+        // Sort by created date
+        $products = $collection->sortByDesc('created_at');
+        
+        return view('location.show', compact('location', 'products'));
     }
 
     /**

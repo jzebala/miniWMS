@@ -32,9 +32,21 @@ Route::post('/inventory-list', [
  */
 
 // Show user by ID
-Route::get('/user/{id}', [
+Route::get('/user/{name}', [
     'as' => 'user.show' , 
     'uses' => 'UserController@show'
+]);
+
+// Change password form
+Route::get('/user/{name}/change-password', [
+    'as' => 'user.changePasswordForm',
+    'uses' => 'UserController@changePasswordForm'
+]);
+
+// Change password
+Route::post('/user/{name}/change-password', [
+    'as' => 'user.changePassword',
+    'uses' => 'UserController@changePassword'
 ]);
 
 /**

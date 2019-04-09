@@ -44,7 +44,7 @@
                     <i class="fas fa-user"></i> {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown">
-                    <a class="dropdown-item" href="{{ route('user.show', Auth::user()->id) }}">Profil</a>
+                    <a class="dropdown-item" href="{{ route('user.show', Auth::user()->name) }}">Profil</a>
                     <a class="dropdown-item" href="#">Wiadomości (5)</a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item" 
